@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do App</title>
+  <style>
+    body {
+      background: burlywood;
+      font-family: sans-serif;
+      padding: 30px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    #a {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid gray;
+    }
+
+    #b {
+      padding: 10px;
+    }
+
+    #c {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: white;
+      margin-top: 10px;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .x {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .y {
+      background: red;
+      color: white;
+      border: none;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>To-Do List</h2>
+  <input id="a" type="text" placeholder="Enter task">
+  <button id="b">Add</button>
+
+  <ul id="c"></ul>
+
+  <script>
+    let a = document.getElementById("a");
+    let b = document.getElementById("b");
+    let c = document.getElementById("c");
+
+    b.onclick = function () {
+      let t = a.value.trim();
+      if (t === "") return;
+
+      let l = document.createElement("li");
+      l.textContent = t;
+
+      l.onclick = function () {
+        l.classList.toggle("x");
+      };
+
+      let d = document.createElement("button");
+      d.textContent = "Delete";
+      d.className = "y";
+      d.onclick = function (e) {
+        e.stopPropagation();
+        l.remove();
+      };
+
+      l.appendChild(d);
+      c.appendChild(l);
+      a.value = "";
+    };
+  </script>
+
+</body>
+</html>
